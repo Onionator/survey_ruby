@@ -1,0 +1,14 @@
+<h1> Surveys </h1>
+
+<% if @surveys.any? %>
+    <ol>
+      <% @surveys.each do |survey| %>
+        <li><%= link_to survey.name, survey_path(survey) %></li>
+      <% end %>
+    </ol>
+<% else %>
+  <% system "say -v samantha There aren't any surveys. create a new one or go away" %>
+  <p>No surveys here.</p>
+<% end %>
+
+<p><%= link_to "Create a new survey.", new_survey_path %></p>

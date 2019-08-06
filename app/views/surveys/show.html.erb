@@ -1,0 +1,20 @@
+<h1><%= @survey.name %></h1>
+
+<% if @survey.questions.any? %>
+    <ol>
+      <% @survey.questions.each do |question| %>
+        <li><%= question.question %></li>
+        <ol>
+
+          <% question.answers.each do |answer| %>
+            <br> <%= radio_button_tag question.id, answer.score %> <%= answer.answer %>
+          <% end %>
+        </ol>
+      <% end %>
+    </ol>
+<% else %>
+  <% system "say -v samantha There aren't any surveys. create a new one or go away" %>
+  <p>No surveys here.</p>
+<% end %>
+
+<p><%= link_to "Go Home", surveys_path %></p>
